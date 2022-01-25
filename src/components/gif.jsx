@@ -2,11 +2,18 @@ import React, { Component } from 'react';
 // import ReactDOM from 'react-dom';
 
 class Gif extends Component {
+  handleClick = (event) => {
+    if (this.props.selectGif) {
+      this.props.selectGif(this.props.id);
+    }
+  };
+
   render() {
-    const src = `https://giphy.com/embed/${this.props.id}`;
+    const src = `https://media2.giphy.com/media/${this.props.id}/200.gif`;
     return (
       <div className='selected-gif'>
-        <iframe src={src} width="300" height="300" frameBorder="0" className="gif" allowFullScreen></iframe>
+        <img src={src}  onClick={this.handleClick} />
+
       </div>
     );
   }

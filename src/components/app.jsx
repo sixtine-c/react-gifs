@@ -13,19 +13,27 @@ class App extends React.Component {
       gifs: [],
       selectedGifId: "fUN9Jal2W57RqQXL2s"
     };
+    this.search = this.search.bind(this);
+    this.selectGif = this.selectGif.bind(this);
   }
 
 
   search = (query) => {
     const giphEndPoint = `https://api.giphy.com/v1/gifs/search?api_key=${GIPHY_API_KEY}&q=${query}&limit=10`;
     fetch(giphEndPoint)
-    .then(response => response.json())
-    .then((data) => {
-      const gifs = data.data.map(giph => giph.id);
-      this.setState({
-        gifs: gifs
-      })
-    })
+      .then(response => response.json())
+      .then((data) => {
+        const gifs = data.data.map(giph => giph.id);
+        this.setState({
+          gifs: gifs
+        });
+      });
+  }
+
+  selectGif(id) {
+    this.setState({
+      selectedGifId: id
+    });
   }
 
   render () {
@@ -36,7 +44,7 @@ class App extends React.Component {
           <Gif id={this.state.selectedGifId} />
         </div>
         <div className="right-scene">
-          <GifList id={this.state.gifs} />
+          <GifList id={this.state.gifs} selectGif={this.selectGif} />
         </div>
       </div>
     );
