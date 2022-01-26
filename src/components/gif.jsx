@@ -9,10 +9,10 @@ class Gif extends Component {
   };
 
   render() {
-    const src = `https://media2.giphy.com/media/${this.props.id}/200.gif`;
+    const src = `https://media4.giphy.com/media/${this.props.id}/giphy.gif`;
     return (
       <div className='selected-gif'>
-        <img src={src}  onClick={this.handleClick} />
+        <img src={src} width="480" height="270" onClick={this.handleClick} />
 
       </div>
     );
